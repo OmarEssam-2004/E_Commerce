@@ -1,0 +1,51 @@
+﻿using E_Commerce.Application.DTOS.Products;
+using E_Commerce.Application.Services.Contracts;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
+
+namespace E_Commerce.API.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class ProductController(IProductService productService) : ApiBaseController
+    {
+        // GET: api/Product
+        [HttpGet]
+        public async Task<ActionResult<IReadOnlyList<ProductDto>>> GetAllProducts(CancellationToken ct = default)
+        {
+
+          var result = await productService.GetAllProductsAsync(ct);
+            return ToActionResult(result);
+
+        }
+        // GET: api/Product
+        [HttpGet("brands")]
+        public async Task<ActionResult<IReadOnlyList<BrandDto>>> GetAllBrands(CancellationToken ct = default)
+        {
+
+          var result = await productService.GetAllBrandsAsync(ct);
+            return ToActionResult(result);
+
+        }
+        // GET: api/Product
+        [HttpGet("types")]
+        public async Task<ActionResult<IReadOnlyList<TypeDto>>> GetAllTypes(CancellationToken ct = default)
+        {
+
+          var result = await productService.GetAllTypesAsync(ct);
+            return ToActionResult(result);
+
+        }
+        // GET: api/Product
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ProductDto>> GetAllProductById(int id, CancellationToken ct = default)
+        {
+
+            var result = await productService.GetProductByIdAsync(id, ct);
+            return ToActionResult(result);
+
+        }
+
+    }
+}
