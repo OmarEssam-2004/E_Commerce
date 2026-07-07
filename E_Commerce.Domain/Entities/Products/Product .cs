@@ -19,5 +19,6 @@ namespace E_Commerce.Domain.Entities.Products
 
         public int TypeId { get; set; }
         public ProductType Type  { get; set; } = default!;
+        //public int? ProductBrandId { get; set; }
     }
 }

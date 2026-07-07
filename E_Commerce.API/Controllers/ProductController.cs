@@ -1,4 +1,5 @@
-﻿using E_Commerce.Application.DTOS.Products;
+﻿using E_Commerce.Application.Common;
+using E_Commerce.Application.DTOS.Products;
 using E_Commerce.Application.Services.Contracts;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -12,10 +13,10 @@ namespace E_Commerce.API.Controllers
     {
         // GET: api/Product
         [HttpGet]
-        public async Task<ActionResult<IReadOnlyList<ProductDto>>> GetAllProducts(CancellationToken ct = default)
+        public async Task<ActionResult<PaginationResult<ProductDto>>> GetAllProducts([FromQuery] ProductQueryParams queryParams, CancellationToken ct = default)
         {
 
-          var result = await productService.GetAllProductsAsync(ct);
+          var result = await productService.GetAllProductsAsync(queryParams, ct);
             return ToActionResult(result);
 
         }
