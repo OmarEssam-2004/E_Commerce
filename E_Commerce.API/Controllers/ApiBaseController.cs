@@ -31,6 +31,20 @@ namespace E_Commerce.API.Controllers
         }
         protected static ObjectResult ToProblem(IReadOnlyList<Error> errors)
         {
+
+
+            if (errors == null || errors.Count == 0)
+            {
+                var defaultProblem = new ProblemDetails
+                {
+                    Title = "Unknown Error",
+                    Detail = "An unexpected error occurred and no specific error details were provided.",
+                    Status = StatusCodes.Status500InternalServerError
+                };
+                return new ObjectResult(defaultProblem) { StatusCode = StatusCodes.Status500InternalServerError };
+            }
+
+
             var freshErrors = errors[0];
 
             var statusCode = freshErrors.ErrorType switch
