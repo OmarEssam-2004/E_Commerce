@@ -2,7 +2,10 @@
 using E_Commerce.API.Extenions;
 using E_Commerce.Application;
 using E_Commerce.Domain.Contracts;
+using E_Commerce.Domain.Entities.Identity;
 using E_Commerce.Infrastructure;
+using E_Commerce.Infrastructure.Identity.Data;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.FileProviders;
 using System.Threading.Tasks;
 
@@ -25,6 +28,8 @@ namespace E_Commerce.API
 
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+
 
 
 
